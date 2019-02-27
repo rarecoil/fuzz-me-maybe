@@ -142,7 +142,7 @@ class Fuzzer {
      * @param {String|Buffer} strbufData Data for IO
      */
     _showIOMaybe(type, strbufData) {
-        let showIO = this._getEnvironmentVariable('SHOW_IO', VAR_TYPE.BOOLEAN);
+        let showIO = this._getEnvironmentVariable('SHOW_IO', ENV_TYPE.BOOLEAN);
         if (showIO === null) {
             showIO = this.options.showIOByDefault;
         }
