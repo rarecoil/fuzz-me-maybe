@@ -32,7 +32,7 @@ function outputToStream(stream, data) {
 
 ## Custom environment flags
 
-`fuzz-me-maybe` allows for boolean, counted, and regex expression flags. To get more functionality, tag your fuzzer calls for enable/disable:
+`fuzz-me-maybe` allows for boolean, counted, and string matching flags. To get more functionality, tag your fuzzer calls for enable/disable:
 
 ````js
 const FuzzMeMaybe = require('fuzz-me-maybe');
