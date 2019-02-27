@@ -1,5 +1,7 @@
 # fuzz-me-maybe
 
+[![Build Status](https://travis-ci.org/rarecoil/fuzz-me-maybe.svg?branch=master)](https://travis-ci.org/rarecoil/fuzz-me-maybe) [![Known Vulnerabilities](https://snyk.io/test/github/rarecoil/fuzz-me-maybe/badge.svg?targetFile=package.json)](https://snyk.io/test/github/rarecoil/fuzz-me-maybe?targetFile=package.json) [![Dependencies](https://david-dm.org/rarecoil/fuzz-me-maybe.svg)](https://david-dm.org/)
+
 ### An environment-variable-based fuzzing harness for Node applications
 
 **fuzz-me-maybe** is a small harness that makes instrumentation of various network protocols easily. It is a small module that offers some command-line input directly into a [radamsa](https://gitlab.com/akihe/radamsa)+[sinkdweller](https://github.com/rarecoil/sinkdweller) fuzzing system.
