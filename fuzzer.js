@@ -1,6 +1,7 @@
 "use strict";
 
 const Sinkdweller = require('sinkdweller');
+const chalk       = require('chalk');
 
 const ENV_TYPE = {
     BOOLEAN: 1, 
@@ -17,7 +18,8 @@ const FLAG_TYPE = {
 const DEFAULT_OPTIONS = {
     environmentPrefix: 'FUZZER_',
     enableFlag: 'ENABLED',
-    enableByDefault: false
+    enableByDefault: false,
+    showIOByDefault: false
 };
 
 
@@ -48,9 +50,11 @@ class Fuzzer {
             strDataKey = strDataKey.toUpperCase();
         }
 
+        this._showIOMaybe('in', strbufData);
         if (this._shouldFuzz(strDataKey, strbufData)) {
-            return this._fuzzer.fuzzSync(strbufData);
+            strbufData = this._fuzzer.fuzzSync(strbufData);
         }
+        this._showIOMaybe('out', strbufData);
         return strbufData;
     }
 
@@ -131,7 +135,30 @@ class Fuzzer {
     }
     
 
+    /**
+     * Show IO to a stdout/stderr if enabled.
+     * 
+     * @param {String} type Caption string (e.g.' 'in', 'out')
+     * @param {String|Buffer} strbufData Data for IO
+     */
+    _showIOMaybe(type, strbufData) {
+        let showIO = this._getEnvironmentVariable('SHOW_IO', VAR_TYPE.BOOLEAN);
+        if (showIO === null) {
+            showIO = this.options.showIOByDefault;
+        }
+        if (showIO) {
+            let showAsStdErr = this._getEnvironmentVariable('SHOW_IO_STDERR', VAR_TYPE.BOOLEAN);
+            if (showAsStdErr === null) {
+                showAsStdErr = false;
+            }
+            let output = showAsStdErr ? console.error : console.info;
+            output(chalk.gray(type) + "\n");
+            output(strbufData);
+            output(chalk.gray('-------------'));
+        }
+    }
 
+    
     /**
      * Whether or not data with the key `strDataKey` should be fuzzed.
      * 

@@ -30,6 +30,13 @@ function outputToStream(stream, data) {
 }
 ````
 
+## Default environment variable control
+
+`fuzz-me-maybe` turns **off** the fuzzer by default. This is such that it will allow tests and other systems to run unless there are explicit flags turning on the fuzzer, and lets you leave fuzzing infrastructure in place. To enable your fuzzer, you will need to set `$ENVPREFIX_ENABLED=1` on your command line (by default, this environment prefix is `FUZZER_`, so you would set `FUZZER_ENABLED=1` to turn on the fuzzer.)
+
+If you want to show your I/O (for example, to save testcases or a log of fuzz output), you can show it by setting `$ENVPREFIX_SHOW_IO=1` on your command line to print to stdout, and `$ENVPREFIX_SHOW_IO=1 $ENVPREFIX_SHOW_IO_STDERR=1`, where `$ENVPREFIX` is either `FUZZER` (the default) or what you set with the `registerEnvironmentPrefix` method.
+
+
 ## Custom environment flags
 
 `fuzz-me-maybe` allows for boolean, counted, and string matching flags. To get more functionality, tag your fuzzer calls for enable/disable:
