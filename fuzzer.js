@@ -245,7 +245,7 @@ class Fuzzer {
      * the variable is nonexistent. 
      * 
      * @param {String} strEnvironmentKey The environment variable key
-     * @param {VAR_TYPE} enVarType Internal variable type.
+     * @param {ENV_TYPE} enVarType Internal variable type.
      */
     _getEnvironmentVariable(strEnvironmentKey, enVarType) {
         strEnvironmentKey = strEnvironmentKey.toUpperCase();
