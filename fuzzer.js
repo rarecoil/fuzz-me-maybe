@@ -147,14 +147,20 @@ class Fuzzer {
             showIO = this.options.showIOByDefault;
         }
         if (showIO) {
-            let showAsStdErr = this._getEnvironmentVariable('SHOW_IO_STDERR', VAR_TYPE.BOOLEAN);
+            let showAsStdErr = this._getEnvironmentVariable('SHOW_IO_STDERR', ENV_TYPE.BOOLEAN);
             if (showAsStdErr === null) {
                 showAsStdErr = false;
             }
             let output = showAsStdErr ? console.error : console.info;
-            output(chalk.gray(type) + "\n");
-            output(strbufData);
-            output(chalk.gray('-------------'));
+            let dataIsBuffer = Buffer.isBuffer(strbufData);
+            let bufferDisclaimer = dataIsBuffer ? ' [encoded Buffer]' : '';
+            output(chalk.gray(type) + isBuffer + ":");
+            if (dataIsBuffer) {
+                output(chalk.white(strbufData.toString('base64')));
+            } else {
+                output(chalk.white(strbufData));
+            }
+            output(chalk.gray("-------------"));
         }
     }
 
