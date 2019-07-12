@@ -1,6 +1,6 @@
 {
   "name": "fuzz-me-maybe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Easily create controllable, radamsa-backed fuzzers using third-party packages and environment variables.",
   "main": "fuzzer.js",
   "scripts": {
