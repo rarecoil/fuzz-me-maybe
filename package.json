@@ -23,9 +23,10 @@
   "homepage": "https://github.com/rarecoil/fuzz-me-maybe#readme",
   "dependencies": {
     "chalk": "^2.4.2",
-    "sinkdweller": "^1.0.3"
+    "sinkdweller": "^1.0.5"
   },
   "devDependencies": {
-    "jest": "^24.1.0"
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0"
   }
 }
